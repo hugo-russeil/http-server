@@ -10,7 +10,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
 ## Prerequisites
 
 - C compiler (e.g., gcc)
-- Basic understanding of C programming
+- GLib library ([GLib Official Website](https://developer.gnome.org/glib/))
 
 ## Usage
 
@@ -40,13 +40,13 @@ This is a simple HTTP server written in C that provides basic functionality for 
 
   Example:
   ```
-  GET /echo/hello HTTP/1.1
+  GET /echo/helloWorld HTTP/1.1
   Host: localhost:8080
   ```
 
   Response:
   ```
-  hello
+  helloWorld
   ```
 
 - **User-Agent Route**: Accessible via `/user-agent`. Displays the User-Agent header received from the client.

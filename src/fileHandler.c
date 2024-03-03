@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <glib.h>
 
 int doesFileExist(const char* filename){
     FILE* file = fopen(filename, "r");
@@ -20,43 +21,42 @@ char* getFileExtension(const char* filename){
     return dot + 1;
 }
 
-//Temporary spaghetti code, to be replaced with hashmap
-char* extensionToHtmlType(char* extension){
-    if(strcmp(extension, "html") == 0){
-        return "text/html";
-    }else if(strcmp(extension, "css") == 0){
-        return "text/css";
-    }else if(strcmp(extension, "js") == 0){
-        return "text/javascript";
-    }else if(strcmp(extension, "jpg") == 0){
-        return "image/jpeg";
-    }else if(strcmp(extension, "jpeg") == 0){
-        return "image/jpeg";
-    }else if(strcmp(extension, "png") == 0){
-        return "image/png";
-    }else if(strcmp(extension, "gif") == 0){
-        return "image/gif";
-    }else if(strcmp(extension, "ico") == 0){
-        return "image/x-icon";
-    }else if(strcmp(extension, "json") == 0){
-        return "application/json";
-    }else if(strcmp(extension, "pdf") == 0){
-        return "application/pdf";
-    }else if(strcmp(extension, "xml") == 0){
-        return "application/xml";
-    }else if(strcmp(extension, "zip") == 0){
-        return "application/zip";
-    }else if(strcmp(extension, "mp3") == 0){
-        return "audio/mpeg";
-    }else if(strcmp(extension, "wav") == 0){
-        return "audio/wav";
-    }else if(strcmp(extension, "mp4") == 0){
-        return "video/mp4";
-    }else if(strcmp(extension, "webm") == 0){
-        return "video/webm";
-    }else if(strcmp(extension, "ogg") == 0){
-        return "video/ogg";
-    }else{
+GHashTable* createExtensionToHtmlTypeMap() {
+    GHashTable* map = g_hash_table_new(g_str_hash, g_str_equal);
+
+    g_hash_table_insert(map, "txt", "text/plain");
+    g_hash_table_insert(map, "htm", "text/html");
+    g_hash_table_insert(map, "html", "text/html");
+    g_hash_table_insert(map, "css", "text/css");
+    g_hash_table_insert(map, "js", "text/javascript");
+    g_hash_table_insert(map, "jpg", "image/jpeg");
+    g_hash_table_insert(map, "jpeg", "image/jpeg");
+    g_hash_table_insert(map, "png", "image/png");
+    g_hash_table_insert(map, "gif", "image/gif");
+    g_hash_table_insert(map, "ico", "image/x-icon");
+    g_hash_table_insert(map, "json", "application/json");
+    g_hash_table_insert(map, "pdf", "application/pdf");
+    g_hash_table_insert(map, "xml", "application/xml");
+    g_hash_table_insert(map, "zip", "application/zip");
+    g_hash_table_insert(map, "mp3", "audio/mpeg");
+    g_hash_table_insert(map, "wav", "audio/wav");
+    g_hash_table_insert(map, "mp4", "video/mp4");
+    g_hash_table_insert(map, "webm", "video/webm");
+    g_hash_table_insert(map, "ogg", "video/ogg");
+
+    return map;
+}
+
+char* extensionToHtmlType(char* extension) {
+    static GHashTable* map = NULL;
+    if (map == NULL) {
+        map = createExtensionToHtmlTypeMap();
+    }
+
+    char* htmlType = g_hash_table_lookup(map, extension);
+    if (htmlType == NULL) {
         return "text/plain";
     }
+
+    return htmlType;
 }
