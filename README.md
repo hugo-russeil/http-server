@@ -41,7 +41,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
   Example:
   ```
   GET /echo/helloWorld HTTP/1.1
-  Host: localhost:8080
+  Host: 127.0.0.1:8080
   ```
 
   Response:
@@ -54,7 +54,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
   Example:
   ```
   GET /user-agent HTTP/1.1
-  Host: localhost:8080
+  Host: 127.0.0.1:8080
   User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0
   ```
 
@@ -68,7 +68,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
   Example (assuming `index.html` exists):
   ```
   GET /index.html HTTP/1.1
-  Host: localhost:8080
+  Host: 127.0.0.1:8080
   ```
 
   Response (if `index.html` exists):
