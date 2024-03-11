@@ -12,7 +12,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
 - C compiler (e.g., gcc)
 - GLib library ([GLib Official Website](https://developer.gnome.org/glib/))
 
-## Usage
+## Installation
 
 1. Clone the repository:
 
@@ -34,7 +34,7 @@ This is a simple HTTP server written in C that provides basic functionality for 
 
 4. Once the server is running, you can send HTTP requests to it using tools like cURL or web browsers.
 
-## Routes
+## Usage
 
 - **Echo Route**: Accessible via `/echo`. Anything after `/echo` in the URL will be echoed back in the server's response.
 
