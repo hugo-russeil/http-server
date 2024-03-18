@@ -3,6 +3,6 @@
 
 httpRequest parseRequest(char* buffer){
     httpRequest request;
-    sscanf(buffer, "%s %s %s", request.method, request.path, request.param);
+    sscanf(buffer, "%6s %1023s %s", request.method, request.path, request.param);
     return request;
 }

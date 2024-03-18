@@ -98,6 +98,7 @@ void handleRequest(int sock_fd, char* request){
         //handle post maybe idk
     }
     sendResponse(sock_fd, response);
+    free(response.body);
 }
 
 char* getUserAgent(char* request) {
